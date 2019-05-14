@@ -1,0 +1,139 @@
+#  Copyright (c) 2019 Manuel Peuster, Paderborn University
+# ALL RIGHTS RESERVED.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# Neither the name of Paderborn University
+# nor the names of its contributors may be used to endorse or promote
+# products derived from this software without specific prior written
+# permission.
+#
+# This work has also been performed in the framework of the 5GTANGO project,
+# funded by the European Commission under Grant number 761493 through
+# the Horizon 2020 and 5G-PPP programmes. The authors would like to
+# acknowledge the contributions of their colleagues of the SONATA
+# partner consortium (www.5gtango.eu).
+---
+metrics:
+    #
+    # cAdvisor metrics
+    #
+    - name: 'container_cpu_usage_rate'
+      query: 'sum(rate(container_cpu_usage_seconds_total{name=~"mn.*"}[10s])) by (name)'
+    - name: 'container_cpu_usage_rate_normalized'
+      query: 'sum(rate(container_cpu_usage_seconds_total{name=~"mn.*"}[10s])) by (name) / sum(container_spec_cpu_quota{name=~"mn.*"}/container_spec_cpu_period{name=~"mn.*"}) by (name)'
+    - name: 'container_cpu_system_seconds_total'
+      query: 'sum(container_cpu_system_seconds_total{name=~"mn.*"}) by (name)'
+    - name: 'container_cpu_user_seconds_total'
+      query: 'sum(container_cpu_user_seconds_total{name=~"mn.*"}) by (name)'
+    - name: 'container_cpu_usage_seconds_total'
+      query: 'sum(container_cpu_usage_seconds_total{name=~"mn.*"}) by (name)'    
+    - name: 'container_cpu_cfs_periods_total'
+      query: 'sum(container_cpu_cfs_periods_total{name=~"mn.*"}) by (name)'
+    - name: 'container_cpu_cfs_throttled_periods_total'
+      query: 'sum(container_cpu_cfs_throttled_periods_total{name=~"mn.*"}) by (name)'
+    - name: 'container_cpu_cfs_throttled_seconds_total'
+      query: 'sum(container_cpu_cfs_throttled_seconds_total{name=~"mn.*"}) by (name)'
+    - name: 'container_memory_usage_bytes'
+      query: 'sum(container_memory_usage_bytes{name=~"mn.*"}) by (name)'
+    - name: 'container_memory_max_usage_bytes'
+      query: 'sum(container_memory_max_usage_bytes{name=~"mn.*"}) by (name)'
+    - name: 'container_memory_swap'
+      query: 'sum(container_memory_swap{name=~"mn.*"}) by (name)'
+    - name: 'container_memory_failures_total'
+      query: 'sum(container_memory_failures_total{name=~"mn.*"}) by (name)'
+    - name: 'container_memory_cache'
+      query: 'sum(container_memory_cache{name=~"mn.*"}) by (name)'
+    - name: 'container_memory_rss'
+      query: 'sum(container_memory_rss{name=~"mn.*"}) by (name)'
+    - name: 'container_fs_io_current'
+      query: 'sum(container_fs_io_current{name=~"mn.*"}) by (name)'
+    - name: 'container_fs_io_time_seconds_total'
+      query: 'sum(container_fs_io_time_seconds_total{name=~"mn.*"}) by (name)'
+    - name: 'container_fs_usage_bytes'
+      query: 'sum(container_fs_usage_bytes{name=~"mn.*"}) by (name)'
+    - name: 'container_network_receive_bytes_total'
+      query: 'sum(container_network_receive_bytes_total{name=~"mn.*"}) by (name)'
+    - name: 'container_network_transmit_bytes_total'
+      query: 'sum(container_network_transmit_bytes_total{name=~"mn.*"}) by (name)'
+    - name: 'container_network_receive_errors_total'
+      query: 'sum(container_network_receive_errors_total{name=~"mn.*"}) by (name)'
+    - name: 'container_network_receive_packets_dropped_total'
+      query: 'sum(container_network_receive_packets_dropped_total{name=~"mn.*"}) by (name)'
+    - name: 'container_network_transmit_errors_total'
+      query: 'sum(container_network_transmit_errors_total{name=~"mn.*"}) by (name)'
+    - name: 'container_network_transmit_packets_dropped_total'
+      query: 'sum(container_network_transmit_packets_dropped_total{name=~"mn.*"}) by (name)'
+    - name: 'container_memory_working_set_bytes'
+      query: 'sum(container_memory_working_set_bytes{name=~"mn.*"}) by (name)'
+    - name: 'container_memory_usage_bytes'
+      query: 'sum(container_memory_usage_bytes{name=~"mn.*"}) by (name)'
+    - name: 'container_network_receive_packets_dropped_total'
+      query: 'sum(container_network_receive_packets_dropped_total{name=~"mn.*"}) by (name)'
+    - name: 'container_start_time_abs_seconds'
+      query: 'sum(container_start_time_seconds{name=~"mn.*"}) by (name)'
+    - name: 'container_spec_cpu_period'
+      query: 'sum(container_spec_cpu_period{name=~"mn.*"}) by (name)'
+    - name: 'container_spec_cpu_quota'
+      query: 'sum(container_spec_cpu_quota{name=~"mn.*"}) by (name)'
+    - name: 'container_spec_cpu_shares'
+      query: 'sum(container_spec_cpu_shares{name=~"mn.*"}) by (name)'  
+    - name: 'container_spec_memory_limit_bytes'
+      query: 'sum(container_spec_memory_limit_bytes{name=~"mn.*"}) by (name)'
+    - name: 'container_spec_memory_reservation_limit_bytes'
+      query: 'sum(container_spec_memory_reservation_limit_bytes{name=~"mn.*"}) by (name)'
+    - name: 'container_spec_memory_swap_limit_bytes'
+      query: 'sum(container_spec_memory_swap_limit_bytes{name=~"mn.*"}) by (name)'  
+    #
+    # Node Exporter Metrics (of Host machine running the experiments)
+    #
+    - name: 'hwnode_cpu_usage'
+      query: 'sum(rate(node_cpu_seconds_total[10s])) by (cpu, mode)'
+    - name: 'hwnode_load1'
+      query: 'node_load1'
+    - name: 'hwnode_load5'
+      query: 'node_load5'
+    - name: 'hwnode_load15'
+      query: 'node_load15'
+    - name: 'hwnode_memory_MemAvailable_bytes'
+      query: 'node_memory_MemAvailable_bytes'
+    - name: 'hwnode_memory_MemUsed_bytes'
+      query: 'node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes'
+    - name: 'hwnode_hwmon_temp_celsius'
+      query: 'node_hwmon_temp_celsius'
+    - name: 'hwnode_context_switches_total'
+      query: 'node_context_switches_total'
+    - name: 'hwnode_procs_running'
+      query: 'node_procs_running'
+    - name: 'hwnode_vmstat_pgfault'
+      query: 'rate(node_vmstat_pgfault[10s])'
+wildcard_metrics:
+    #
+    # VNF-specific metrics. The tool automatically fetches all metrics available in Prometheus.
+    #
+    ### Suricate IDS
+    - name: 'suricata'
+      metric_starts_with: 'suricata_'
+    ### Snort 2.9
+    - name: 'snort2'
+      metric_starts_with: 'snort2_'
+    ### Snort 3 
+    - name: 'snort3'
+      metric_starts_with: 'snort3_'
+    ### Mosquitto 
+    - name: 'mosquitto'
+      metric_starts_with: 'mosquitto_'
+    ### Emqx
+    ### Mosquitto 
+    - name: 'emqx'
+      metric_starts_with: 'emqx_'
