@@ -13,17 +13,17 @@ set -x
 set +e
 mkdir $TARGET_DIR/meta
 mkdir $TARGET_DIR/data
-set -e
 
 # top level
-cp templates/LICENSE $TARGET_DIR/LICENSE
-cp templates/README.md $TARGET_DIR/README.md
-cp templates/.gitignore $TARGET_DIR/.gitignore
+cp -n templates/LICENSE $TARGET_DIR/LICENSE
+cp -n templates/README.md $TARGET_DIR/README.md
+cp -n templates/.gitignore $TARGET_DIR/.gitignore
 
 # meta (static)
-cp templates/platform_hw_info.xml $TARGET_DIR/meta/platform_hw_info.xml
-cp templates/platform_sw_info_os.txt $TARGET_DIR/meta/platform_sw_info_os.txt
-cp templates/platform_sw_info_pkg.txt $TARGET_DIR/meta/platform_sw_info_pkg.txt
+cp -n templates/platform_hw_info.xml $TARGET_DIR/meta/platform_hw_info.xml
+cp -n templates/platform_sw_info_os.txt $TARGET_DIR/meta/platform_sw_info_os.txt
+cp -n templates/platform_sw_info_pkg.txt $TARGET_DIR/meta/platform_sw_info_pkg.txt
+set -e
 
 # meta (experiment)
 cp $SOURCE_DIR/original_ped.yml $TARGET_DIR/meta/ped.yml
